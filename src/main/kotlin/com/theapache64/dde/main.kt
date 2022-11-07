@@ -1,5 +1,7 @@
 package com.theapache64.dde
 
+import androidx.compose.ui.unit.DpSize
+import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.WindowState
 import androidx.compose.ui.window.singleWindowApplication
 import com.arkivanov.decompose.DefaultComponentContext
@@ -17,7 +19,17 @@ import javax.swing.SwingUtilities
 fun main() {
     val windowState = WindowState()
     val lifecycle = LifecycleRegistry()
-    val root = runOnMainThreadBlocking {  NavHostComponent(DefaultComponentContext(lifecycle)) }
+    val root = runOnMainThreadBlocking {
+        NavHostComponent(
+            componentContext = DefaultComponentContext(lifecycle),
+            onResizeWindow = {
+                windowState.size = when (it) {
+                    NavHostComponent.WindowSize.NORMAL -> DpSize(800.dp,600.dp)
+                    NavHostComponent.WindowSize.LARGE -> DpSize(1000.dp,600.dp)
+                }
+            }
+        )
+    }
 
     singleWindowApplication(
         state = windowState,

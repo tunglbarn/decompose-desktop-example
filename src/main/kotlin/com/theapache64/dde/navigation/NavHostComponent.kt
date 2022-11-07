@@ -20,7 +20,8 @@ import com.theapache64.dde.screen.input.InputScreenComponent
  * Navigator
  */
 class NavHostComponent(
-    componentContext: ComponentContext
+    componentContext: ComponentContext,
+    private val onResizeWindow: (WindowSize) -> Unit
 ) : Component, ComponentContext by componentContext {
     private val navigation = StackNavigation<ScreenConfig>()
     private val stack = childStack(
@@ -28,6 +29,10 @@ class NavHostComponent(
         initialConfiguration = ScreenConfig.Input,
         childFactory = ::createScreenComponent
     )
+
+    enum class WindowSize {
+        NORMAL, LARGE
+    }
 
     /**
      * Factory function to create screen from given ScreenConfig
@@ -46,7 +51,9 @@ class NavHostComponent(
             is ScreenConfig.Greeting -> GreetingScreenComponent(
                 componentContext,
                 screenConfig.name,
-                ::onGoBackClicked
+                ::onGoBackClicked,
+                ::makeLarge,
+                ::makeNormal
             )
         }
     }
@@ -57,6 +64,14 @@ class NavHostComponent(
      */
     private fun onGoClicked(name: String) {
         navigation.push(ScreenConfig.Greeting(name))
+    }
+
+    private fun makeLarge() {
+        onResizeWindow(WindowSize.LARGE)
+    }
+
+    private fun makeNormal() {
+        onResizeWindow(WindowSize.NORMAL)
     }
 
     /**

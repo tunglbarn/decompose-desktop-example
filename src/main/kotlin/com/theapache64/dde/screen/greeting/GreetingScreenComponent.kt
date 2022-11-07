@@ -7,7 +7,9 @@ import com.theapache64.dde.navigation.Component
 class GreetingScreenComponent(
     private val componentContext: ComponentContext,
     private val name: String,
-    private val onGoBackClicked: () -> Unit
+    private val onGoBackClicked: () -> Unit,
+    private val onResizeClicked: () -> Unit,
+    private val onNormalSizeClicked: () -> Unit
 ) : Component, ComponentContext by componentContext {
 
     private val greeting = greetings.random()
@@ -28,7 +30,9 @@ class GreetingScreenComponent(
     override fun render() {
         GreetingScreen(
             greeting = "$greeting, $name",
-            onGoBackClicked = onGoBackClicked
+            onGoBackClicked = onGoBackClicked,
+            onResizeClicked = onResizeClicked,
+            onNormalSizeClicked = onNormalSizeClicked
         )
     }
 }

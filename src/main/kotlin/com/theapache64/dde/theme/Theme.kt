@@ -1,11 +1,14 @@
 package com.theapache64.dde.theme
 
+import androidx.compose.foundation.LocalScrollbarStyle
+import androidx.compose.foundation.defaultScrollbarStyle
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Typography
 import androidx.compose.material.darkColors
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontFamily
@@ -32,10 +35,12 @@ fun DecomposeDesktopExampleTheme(
             defaultFontFamily = FontFamily(Font("google_sans_regular.ttf"))
         )
     ) {
-        Surface(
-            modifier = Modifier.fillMaxSize()
-        ) {
-            content()
+        CompositionLocalProvider(LocalScrollbarStyle provides defaultScrollbarStyle()) {
+            Surface(
+                modifier = Modifier.fillMaxSize()
+            ) {
+                content()
+            }
         }
     }
 }

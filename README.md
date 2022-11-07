@@ -10,6 +10,8 @@
 
 > A simple example of how to use Decomposer for navigation and state keeping in Compose desktop
 
+> **Contributing info:** This fork's goal is to implement suggested answer to decompose discussion question [252](https://github.com/arkivanov/Decompose/discussions/252).
+
 ### ✨ Demo
 
 ![](demo.gif)

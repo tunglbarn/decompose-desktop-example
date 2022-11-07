@@ -3,12 +3,12 @@ import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    kotlin("jvm") version "1.7.10"
-    id("org.jetbrains.compose") version "1.2.0-alpha01-dev774"
+    kotlin("jvm") version "1.7.20"
+    id("org.jetbrains.compose") version "1.2.0"
 }
 
 group = "com.theapache64"
-version = "1.0.1"
+version = "1.0.252"
 
 repositories {
     jcenter()
@@ -20,13 +20,13 @@ dependencies {
     implementation(kotlin("stdlib-jdk8"))
     implementation(compose.desktop.currentOs)
     // Decompose : Decompose
-    implementation("com.arkivanov.decompose:decompose:1.0.0-alpha-04")
-    implementation("com.arkivanov.decompose:extensions-compose-jetbrains:1.0.0-alpha-04")
+    implementation("com.arkivanov.decompose:decompose:1.0.0-alpha-07")
+    implementation("com.arkivanov.decompose:extensions-compose-jetbrains:1.0.0-alpha-07")
 
 }
 
 tasks.withType<KotlinCompile>() {
-    kotlinOptions.jvmTarget = "11"
+    kotlinOptions.jvmTarget = "17"
 }
 
 compose.desktop {
